@@ -22,7 +22,7 @@ def eval_metrics(actul, pred):
 
 
 
-def train_and_evaluate(config_path):
+def train_and_evaluate_mlops(config_path):
     config = read_params(config_path)
     test_data_path = config["split_data"]["test_path"]
     train_data_path = config["split_data"]["train_path"]
@@ -68,7 +68,7 @@ def train_and_evaluate(config_path):
         if tracking_url_type_store !="file" :
             mlflow.sklearn.log_model(lr, "model", registered_model_name = mlflow_config["registered_model_name"])
         else:
-            mlflow.sklearn.load_model(lr, "model")
+            mlflow.sklearn.log_model(lr, "model")
  
     ################################
 
@@ -82,4 +82,4 @@ if __name__=="__main__":
     args = argparse.ArgumentParser()
     args.add_argument("--config", default="params.yaml")
     parsed_args=args.parse_args()
-    train_and_evaluate(config_path=parsed_args.config)
+    train_and_evaluate_mlops(config_path=parsed_args.config)
