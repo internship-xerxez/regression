@@ -22,16 +22,16 @@ estimators:
 
 model_dirs: models
 
-reports:
-  params: reports/params.json
-  score: reports/scores.json
+#reports:
+#  params: reports/params.json
+#  score: reports/scores.json
 
-mlflow_coonfig:
+mlflow_config:
   artifacts_dir: artifacts
   experiment_name: ElasticNet_Expenses
   run_name: mlops
   registered_model_name: ElasticNetMedicalExpenses
-  remote_server_ruti: http://127.0.0.1:5000
+  remote_server_uri: http://127.0.0.1:5000
 
 
 
