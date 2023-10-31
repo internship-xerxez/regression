@@ -17,8 +17,8 @@ split_data:
 estimators:
   ElasticNet:
     params:
-      alpha: 0.7
-      l1_ration: 0.8
+      alpha: 0.9
+      l1_ration: 0.9
 
 model_dirs: models
 

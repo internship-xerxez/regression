@@ -12,6 +12,10 @@ import json
 import numpy as np
 import mlflow
 from urllib.parse import urlparse
+from mlflow.models.signature import infer_signature
+import mlflow.sklearn
+import argparse
+import logging
 
 def eval_metrics(actul, pred):
     rmse = np.sqrt(mean_squared_error(actul,pred))
@@ -68,7 +72,7 @@ def train_and_evaluate_mlops(config_path):
         if tracking_url_type_store !="file" :
             mlflow.sklearn.log_model(lr, "model", registered_model_name = mlflow_config["registered_model_name"])
         else:
-            mlflow.sklearn.log_model(lr, "model")
+            mlflow.sklearn.log_model(lr, "model")  #, signature=signature
  
     ################################
 
