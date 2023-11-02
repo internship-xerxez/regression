@@ -14,18 +14,19 @@ EXPOSE 8000
 
 RUN python -m venv /py
 
-RUN /py/bin/pip install -r /requirements_docker.txt
+RUN /py/bin/pip install -r /requiremnets_docker.txt
 
-RUN /py/bin/pip install --upgarde pip
+#RUN /py/bin/pip install --upgarde pip
+RUN python -m pip install --upgrade pip
 
-RUN apk add --update --no-cache --virtual linux-headers
-RUN adduser --disable-password --no-create-home webapp
+#RUN apk add --update --no-cache --virtual linux-headers
+#RUN adduser --disable-password --no-create-home webapp
 
-ENV PATH="/py/bin:$PATH"
+#ENV PATH="/py/bin:$PATH"
 
-USER app
+#USER app
 
-USER webapp
+#USER webapp
 
 
 
