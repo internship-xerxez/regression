@@ -1,0 +1,7 @@
+django
+psycopg2-binary
+joblib
+numpy
+pandas
+scikit-learn
+uWSGI

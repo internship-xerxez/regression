@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/675766525059500041/42f9f00b081a4c268d4aea7a7809305c/artifacts
+end_time: 1698850106186
+entry_point_name: ''
+experiment_id: '675766525059500041'
+lifecycle_stage: active
+run_id: 42f9f00b081a4c268d4aea7a7809305c
+run_name: mlops
+run_uuid: 42f9f00b081a4c268d4aea7a7809305c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1698850101982
+status: 3
+tags: []
+user_id: Tanzeem Agra

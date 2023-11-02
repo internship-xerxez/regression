@@ -16,6 +16,8 @@ from mlflow.models.signature import infer_signature
 import mlflow.sklearn
 import argparse
 import logging
+from mlflow.server import get_app_client
+from mlflow.server.auth.client import AuthServiceClient
 
 def eval_metrics(actul, pred):
     rmse = np.sqrt(mean_squared_error(actul,pred))
@@ -23,9 +25,19 @@ def eval_metrics(actul, pred):
     r2 = r2_score(actul, pred)
     return rmse, mae, r2
 
+##################AUTHENTICATION#####################
 
+#import requests
 
+#response = requests.post(
+#    "http://127.0.0.1:5000",
+#    json={
+#        "username": "admin",
+#        "password": "admin",
+#    },
+#)
 
+###############################
 def train_and_evaluate_mlops(config_path):
     config = read_params(config_path)
     test_data_path = config["split_data"]["test_path"]
@@ -53,7 +65,18 @@ def train_and_evaluate_mlops(config_path):
     remote_server_uri = mlflow_config["remote_server_uri"]
 
     mlflow.set_tracking_uri(remote_server_uri)
+
+    #########################################
+    #auth_client = get_app_client("basic-auth", tracking_uri=remote_server_uri)
+    #auth_client = mlflow.server.get_app_client("basic-auth", tracking_uri="http://127.0.0.1:5000")
+    #auth_client.create_user(username="admin", password="admin")
+    #auth_client.update_user_admin(username="admin", is_admin=True)
+    ####################################
+
     mlflow.set_experiment(mlflow_config["experiment_name"])
+
+    
+
     with mlflow.start_run(run_name=mlflow_config["run_name"]) as mlops_run:
         lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=random_state)
         lr.fit(train_x, train_y)
@@ -72,7 +95,7 @@ def train_and_evaluate_mlops(config_path):
         if tracking_url_type_store !="file" :
             mlflow.sklearn.log_model(lr, "model", registered_model_name = mlflow_config["registered_model_name"])
         else:
-            mlflow.sklearn.log_model(lr, "model")  #, signature=signature
+            mlflow.sklearn.log_model(lr, "model")  #, signature=signature 
  
     ################################
 

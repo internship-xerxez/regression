@@ -17,14 +17,14 @@ split_data:
 estimators:
   ElasticNet:
     params:
-      alpha: 0.9
-      l1_ration: 0.9
+      alpha: 0.8
+      l1_ration: 0.7
 
 model_dirs: models
 
-#reports:
-#  params: reports/params.json
-#  score: reports/scores.json
+reports:
+  params: reports/params.json
+  score: reports/scores.json
 
 mlflow_config:
   artifacts_dir: artifacts
