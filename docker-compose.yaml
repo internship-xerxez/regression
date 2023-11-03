@@ -28,7 +28,7 @@ services:
 
 
   db:
-    image: postgres:13-alphine
+    image: postgres:13-alpine
     restart: always
     environment:
       - POSTGRES_DB=devdb
@@ -36,5 +36,5 @@ services:
       - DB_PASS=changeme
 
     ports:
-      - "5432:5432"
+      - "5431:5431"
 
