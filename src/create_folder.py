@@ -28,6 +28,6 @@ def create_folder(config, img=None):
 
 if __name__=='__main__':
     args=argparse.ArgumentParser()
-    args.add_argument("--config", default='params.yaml')
+    args.add_argument("--config", default='deep_params.yaml')
     passed_args=args.parse_args()
     create_folder(config=passed_args.config)
