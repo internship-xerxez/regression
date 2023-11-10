@@ -12,6 +12,7 @@ import tensorflow
 
 def train_model_deep(config_file):
     config=get_data_deep(config_file)
+    train = config['model']['trainable']
     if train == True:
         img_size = config['model']['image_size']
         trn_set = config['model']['train_path']
@@ -39,23 +40,41 @@ def train_model_deep(config_file):
         op = Flatten()(resnet.output)
         prediction = Dense(num_cls, activation='softmax')(op)
         
-        mod = Model(input=resnet.input, outputs=prediction)
+        mod = Model(inputs = resnet.input, outputs=prediction)
         print(mod.summary())
         img_size = tuple(img_size)
 
         mod.compile(loss=loss, optimizer=optimizer, metrics=metrics)
 
-        tra
+        train_gen = ImageDataGenerator(rescale=1./255,
+                                       shear_range=shear_range,
+                                       zoom_range=zoom_range,
+                                       horizontal_flip=horizontalf,
+                                       vertical_flip=verticalf,
+                                       rotation_range=90)
+        test_gen = ImageDataGenerator(rescale=1./255)
 
+        train_set = train_gen.flow_from_directory(trn_set,
+                                                  target_size=(255,255),
+                                                  batch_size=batch,
+                                                  class_mode=class_mode)
+        
+        test_set = test_gen.flow_from_directory(te_set,
+                                                  target_size=(255,255),
+                                                  batch_size=batch,
+                                                  class_mode=class_mode)
+        
+        history = mod.fit(train_set,
+                          epochs=epochs,
+                          validation_data=test_set,
+                          steps_per_epoch=len(train_set),
+                          validation_steps=len(test_set))
+        
+        mod.save('models/trained.h5')
 
-
-
-
-
-
-
-
-
+    else:
+        print('Model not trained by Xerxez Solutions')
+        
 
 if __name__ == '__main__':
     
