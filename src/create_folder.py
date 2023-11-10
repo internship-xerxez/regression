@@ -10,8 +10,8 @@ from get_data_deep import get_data_deep
 
 def create_folder(config, img=None):
     config=get_data_deep(config)
-    dirr=config['load_data']['preprocessed_data']
-    cla=config['load_data']['num_classes']
+    dirr=config['load_data_deep']['preprocessed_data']
+    cla=config['load_data_deep']['num_classes']
     print(dirr)
     print(cla)
 
