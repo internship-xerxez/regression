@@ -70,6 +70,16 @@ def train_model_deep(config_file):
                           steps_per_epoch=len(train_set),
                           validation_steps=len(test_set))
         
+        plt.plot(history.history['loss'], label='train_loss')
+        plt.plot(history.history['val_loss'],label='val_loss')
+        plt.legend()
+        plt.savefig('reports/train_v_loss')
+
+        plt.plot(history.history['accuracy'], label='accuracy')
+        plt.plot(history.history['val_accuracy'],label='val_acc')
+        plt.legend()
+        plt.savefig('reports/acc_v_vacc')
+        
         mod.save('models/trained.h5')
 
     else:
