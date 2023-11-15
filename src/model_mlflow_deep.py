@@ -81,7 +81,7 @@ def train_model_deep_mlflow(config_file):
                           validation_steps=len(test_set)
             )
 
-            train_loss = history.histroy['loss'][-1]
+            train_loss = history.history['loss'][-1]
             train_acc = history.history['accuracy'][-1]
             val_loss = history.history['val_loss'][-1]
             print("train_loss:", train_loss)
@@ -99,7 +99,8 @@ def train_model_deep_mlflow(config_file):
                 mlflow.keras.log_model(mod, "model", registered_model_name=mlflow_config_deep["registered_deep_model_name"])
             else:
                 mlflow.keras.load_model(mod, "model")
-        
+    else:
+        print("Model is not trained by Xerxexz Solutions")
 
 
 
