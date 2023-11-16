@@ -11,6 +11,8 @@ from keras.applications.vgg19 import VGG19
 import tensorflow
 import mlflow
 from urllib.parse import urlparse
+from mlflow.keras import log_model
+
 
 def train_model_deep_mlflow(config_file):
     config=get_data_deep(config_file)
@@ -98,7 +100,7 @@ def train_model_deep_mlflow(config_file):
             if tracking_url_type_store_deep!="file":
                 mlflow.keras.log_model(mod, "model", registered_model_name=mlflow_config_deep["registered_deep_model_name"])
             else:
-                mlflow.keras.load_model(mod, "model")
+                mlflow.keras.log_model(mod, "model")
     else:
         print("Model is not trained by Xerxexz Solutions")
 
