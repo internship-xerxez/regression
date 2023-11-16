@@ -24,7 +24,9 @@ def log_production_deep(config_file):
     remote_server_uri_deep = mlflow_config_deep["remote_server_uri_deep"]
     mlflow.set_tracking_uri(remote_server_uri_deep)
     mlflow.set_experiment(mlflow_config_deep["experiment_name_deep"])
-    runs = mlflow.search_runs([1])
+    #runs = mlflow.search_runs([1])
+    #number = [1]
+    runs=mlflow.search_runs(experiment_ids=[2])
     lowest=runs["metrics.train_accuracy"].sort_values(ascending=True)[0]
     lowest_run_id=runs[runs["metrics.train_accuracy"]==lowest]["run_id"][0]
 
