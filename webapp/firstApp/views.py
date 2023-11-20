@@ -101,9 +101,10 @@ from PIL import Image
 import numpy as np
 import os
 from django.core.files.storage import FileSystemStorage
+import h5py as h5
 
 media = 'media'
-model = keras.models.load_model('../models/trained.h5')
+model = keras.models.load_model('trained.h5')
 
 
 def makepredictions(path):
@@ -134,9 +135,6 @@ def makepredictions(path):
 
 
 
-
-
-
 def index_deep(request):
     if request.method == "POST" and request.FILES['upload']:
         if 'upload' not in request.FILES:
@@ -144,12 +142,12 @@ def index_deep(request):
             return render(request, 'index_deep.html',{'err': err})
         f = request.FILES['upload']
         if f == '':
-            err = 'NO Files Selected'
+            err = 'No Files Selected'
             return render(request, 'index_deep.html', {'err': err})
         
-        upload = request.FILES['upload']
+        upload =request.FILES['upload']
         fss = FileSystemStorage()
-        file = fss.save(upload.name, upload)
+        file = fss.save(upload.name,upload)
         file_url = fss.url(file)
 
         predictions = makepredictions(os.path.join(media, file))
