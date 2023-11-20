@@ -20,25 +20,31 @@
 </head>
 <body style="background-color:powderblue">
 
-<center><h1><span style="color:#FF0000">Medical Expenses App </span></h1>
-    <center><h3>Please Enter the Data</h3></center> <br>
+<center><h1><span style="color:#FF0000">MRI Prediction Application </span></h1>
+    <center><h3>Please Enter the Image</h3></center> <br>
 
-    <form action="{% url 'result' %}">
+    <form method= "POST" encrypty="multipart/form-data">
         {% csrf_token %}
 
-      
+        <input type="file" name="upload" accept=".jpg, .jpeg, .png, .jfif" />
 
-        <center><button type="submit" name="" value="submit" class="button button1">Submit</button></center>
-        <center><button type="reset" name="" value="reset" class="button button1">Reset</button></center>
+        <input type="submit" value="submit" />
+        
     </form>
 
-    {% if answer %}
+        <p> {{ pred }}</p>
+
+        <!-- <center><button type="submit" name="" value="submit" class="button button1">Submit</button></center>
+        <center><button type="reset" name="" value="reset" class="button button1">Reset</button></center> -->
+    
+
+    <!--{% if answer %}
 
     <center><h2 style="color:#FF6600"> The Medical Expenses is {{answer}} Dollars</h2>
     <h3 style="color:#009900">Thanks for using Medical App</h3></h2>
     </center>
 
-    {% endif %}
+    {% endif %} -->
 
 </center>
 </body>
