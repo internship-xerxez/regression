@@ -7,6 +7,7 @@ ENV PYTHONNUNBUFFERED 1
 COPY ./requirements_docker.txt /requiremnets_docker.txt
 COPY ./webapp /webapp
 COPY ./models/model.joblib /models/model.joblib
+COPY ./models/trained.h5 /models/trained.h5
 
 WORKDIR /webapp
 
