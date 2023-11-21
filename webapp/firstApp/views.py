@@ -122,16 +122,40 @@ def makepredictions(path):
     rgb_img=rgb_img.reshape(-1,255,255,3)
 
     predictions = model.predict(rgb_img)
-    a = int(np.argmax(predictions))
-    if a ==1 :
-        a = "Result: glioma"
-    elif a==2:
-        a = "Result : meningioma"
-    elif a == 3:
-        a = "Result is : notumor"
+    result_name = ["glioma", "meningioma", "notumor", "pituitary"]
+    prediction_index = int(np.argmax(predictions))
+
+    result_folder_name = result_name[prediction_index]
+    folder_path = os.path.join(media, result_folder_name)
+
+    if not os.path.exists(folder_path):
+        os.makedirs(folder_path)
+
+    image_name = os.path.basename(path)
+    new_image_path = os.path.join(folder_path, image_name)
+
+    img.save(new_image_path)
+
+    delete_images(media)
+
+    if prediction_index == 0:
+        result = "Result: glioma" 
+    elif prediction_index == 1:
+        result = "Result : meningioma"
+    elif prediction_index == 2:
+        result = "Result is : notumor"
     else:
-        a = "Result : pituitary"
-    return a
+        result = "Result : pituitary"
+    return result, new_image_path
+
+def delete_images(directory_path):
+    for filename in os.listdir(directory_path):
+        file_path = os.path.join(directory_path, filename)
+
+        if filename.lower().endswith(('.png','.jpg','.jpeg','.gif','.bmp')):
+            os.remove(file_path)
+            print(f"Deleted : {filename}")
+
 
 
 
@@ -150,9 +174,9 @@ def index_deep(request):
         file = fss.save(upload.name,upload)
         file_url = fss.url(file)
 
-        predictions = makepredictions(os.path.join(media, file))
+        predictions, new_image_path = makepredictions(os.path.join(media, file))
 
-        return render(request, 'index_deep.html', {'pred': predictions, 'file_url': file_url})
+        return render(request, 'index_deep.html', {'pred': predictions, 'file_url': new_image_path})
     else:
         return render(request, 'index_deep.html')
 

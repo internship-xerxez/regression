@@ -31,9 +31,12 @@
         <input type="submit" value="submit" />
         
     </form>
-
+        {% if file_url %}
+        <br >
+        <br >
+        <img src="{{file_url}}" alt="Uploaded Image" width="255" height="255">
         <p> {{ pred }}</p>
-        <p> {{ file_url }} </p>
+        {% endif %}
 
         <!-- <center><button type="submit" name="" value="submit" class="button button1">Submit</button></center>
         <center><button type="reset" name="" value="reset" class="button button1">Reset</button></center> -->
