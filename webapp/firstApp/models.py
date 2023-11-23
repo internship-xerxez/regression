@@ -12,3 +12,5 @@ class internship(models.Model):
     smoker = models.FloatField()
     region = models.FloatField()
     charges = models.FloatField()
+
+# Hello This is the end microservice nbased application
