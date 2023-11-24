@@ -14,11 +14,12 @@ WORKDIR /webapp
 EXPOSE 8000
 
 RUN python -m venv /py
-
+#RUN /py/bin/pip install awscli -y
 RUN /py/bin/pip install -r /requiremnets_docker.txt
-
+RUN apt update -y && apt install awscli -y
 RUN /py/bin/pip install --upgrade pip
 RUN python -m pip install --upgrade pip
+
 
 #RUN apk add --update --no-cache --virtual linux-headers
 #RUN adduser --disable-password --no-create-home webapp

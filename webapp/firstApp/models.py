@@ -13,4 +13,3 @@ class internship(models.Model):
     region = models.FloatField()
     charges = models.FloatField()
 
-# Hello This is the end microservice nbased application
