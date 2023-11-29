@@ -11,7 +11,7 @@ COPY ./models/trained.h5 /models/trained.h5
 
 WORKDIR /webapp
 
-EXPOSE 8000
+EXPOSE 8080
 
 RUN python -m venv /py
 #RUN /py/bin/pip install awscli -y
