@@ -14,4 +14,4 @@ Step 7 : In Github Repository create the Secret : SLACK_WEBHOOK_URL and follow t
 
 Step 8 : Now add the url in yaml file, please follow the procedure in internship Repository
 
-Step 9 : Modify the code in YAML file
+Step 9 : Modify the code in YAML file and Minor Modification
