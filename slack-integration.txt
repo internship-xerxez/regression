@@ -13,3 +13,5 @@ Step 6 : Copy the URL : https://hooks.slack.com/services/T067JDFDPFZ/B067QU5LS95
 Step 7 : In Github Repository create the Secret : SLACK_WEBHOOK_URL and follow the procedure
 
 Step 8 : Now add the url in yaml file, please follow the procedure in internship Repository
+
+Step 9 : Modify the code in YAML file
