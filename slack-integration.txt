@@ -1,4 +1,4 @@
-Step 1 : Webhook URL : https://api.slack.com/messaging/webhooks
+Step 1 : Webhook URL : https://api.slack.com/messaging/webhooks  | https://api.slack.com/apps
 
 Step 2 : Select "create your Slack App" and Follow the procedure
 

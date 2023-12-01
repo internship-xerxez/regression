@@ -15,8 +15,8 @@ jobs:
   integration:
     name: Continuous Integration
     runs-on: ubuntu-latest
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    # env:
+    #   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       
       - name: Checkout Code
@@ -28,13 +28,13 @@ jobs:
       - name: Run unit tests
         run: echo "Running unit tests"
 
-      - name: Slack Notification
-        uses: act10ns/slack@v1
-        with: 
-          status: starting
-          channel: '#aiml'
-          message: Starting Build and Deploy...
-        if: always()
+      # - name: Slack Notification
+      #   uses: act10ns/slack@v1
+      #   with: 
+      #     status: starting
+      #     channel: '#aiml'
+      #     message: Starting Build and Deploy...
+      #   if: always()
 
   build-and-push-ecr-image:
     name: Continuous Delivery
