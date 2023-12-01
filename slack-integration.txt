@@ -1,17 +1,4 @@
-Step 1 : Webhook URL : https://api.slack.com/messaging/webhooks  | https://api.slack.com/apps
+https://github.com/integrations/slack#scheduled-reminders
 
-Step 2 : Select "create your Slack App" and Follow the procedure
 
-Step 3 : First Create the Workspace in Slack 
-
-Step 4 : Incoming Webhooks and Activate it
-
-Step 5 : Drag Down - Click On : Add New Webhook to Workspace
-
-Step 6 : Copy the URL : https://hooks.slack.com/services/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
-
-Step 7 : In Github Repository create the Secret : SLACK_WEBHOOK_URL and follow the procedure
-
-Step 8 : Now add the url in yaml file, please follow the procedure in internship Repository
-
-Step 9 : Modify the code in YAML file and Minor Modification
+https://morioh.com/a/29ea8dfb143a/how-to-automate-tests-and-slack-notifications-with-github-actions

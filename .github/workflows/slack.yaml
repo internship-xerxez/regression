@@ -1,0 +1,51 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: MLOps and Slack
+
+on:
+  push:
+    branches: [ mlops_deep ]
+  pull_request:
+    branches: [ mlops_deep ]
+  workflow_dispatch:
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    #environment: Production
+    env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    steps:
+    - name: Slack Notification
+      uses: act10ns/slack@v1
+      with: 
+        status: starting
+        channel: '#mlops'
+        message: Starting Build and Deploy...
+      if: always()
+      
+     
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    steps:
+    - name: Slack Notification
+      uses: act10ns/slack@v1
+      with: 
+        status: starting
+        channel: '#mlops'
+        message: Starting Deployment...
+      if: always()
+      
+    - name: Slack Notification
+      uses: act10ns/slack@v1
+      with: 
+        status: ${{ job.status }}
+        channel: '#mlops'
+        message: Deployed {{ env.GITHUB_REF_NAME }} branch Successfully
+      if: always()
